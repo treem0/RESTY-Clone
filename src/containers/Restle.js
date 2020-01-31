@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import Form from '../components/form/Form';
-import History from '../components/history/History';
+import HistoryList from '../components/history/HistoryList';
 import Response from '../components/response/Response';
+
 
 export default class RESTLE extends Component {
 state = {
   url: '',
   method: '',
+  headers: [{
+    'Content-Type': 'application/json'
+  }],
+  requestBody: '',
   response: [],
-  history: []
+  historyList: [],
+  username: '',
+  password: '',
 }
 
 handleChange = ({ target }) => {
@@ -18,27 +25,34 @@ handleChange = ({ target }) => {
 handleSubmit = event => {
   event.preventDefault();
 
-  this.setState(state => ({
-    response: [...state.response, {
-      response: state.response
-    }]
+  const { method, headers, url, requestBody, historyList, username, password } = this.state;
+  this.setState(() => ({ historyList: [...historyList, {
+    method,
+    headers,
+    url,
+    requestBody,
+    username,
+    password
+  }]
   }));
-}
-
-fetch = ({ url }) => {
-  fetch({ url })
+  
+  fetch(this.state.url)
     .then(res => res.json())
-    .then(response => response
-      
-    );
-}
+    .then(data => {
+      this.setState({ response: data.results });
+    });
+};
+
+
 
 render() {
+  const { historyList, url, method, requestBody, response, username, password } = this.state;
+
   return (
     <>
-      <Form url={this.state.url} onSubmit={this.handleSubmit} onChange={this.handleChange} authusername={this.state.authusername} authpassword={this.state.authpassword}/>
-      <History />
-      <Response />
+      <Form url={url} onSubmit={this.handleSubmit} onChange={this.handleChange} username={username} password={password} method={method} requestBody={requestBody} />
+      <HistoryList historyList={historyList}/>
+      <Response response={response} />
     </>
   );
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Form = ({ url, authusername, authpassword, onChange, onSubmit }) => (
+const Form = ({ url, method, requestBody, username, password, token, onChange, onSubmit }) => (
   <form>
     <section>
       <input name="url" type="text" value={url} placeholder="URL" onChange={onChange}></input>
       <div id='methods'>
         <label>
-          <input type="radio" name="method" value="get" onChange={onChange}></input>
+          <input type="radio" name="method" value="get" onChange={onChange} checked={method === 'get'}></input>
           <span>GET</span>
         </label>
         <label>
@@ -33,14 +33,15 @@ const Form = ({ url, authusername, authpassword, onChange, onSubmit }) => (
     </section>
     <section>
       <div id="body">
-        <textarea placeholder="Raw JSON Body" name="requestBody"></textarea>
+        <textarea placeholder="Raw JSON Body" name="requestBody" value={requestBody} onChange={onChange}></textarea>
       </div>
       <div id="headers">
+
         <button>Headers</button>
         <div className="visible-true">
           <h2>Basic Authorization</h2>
-          <input name={authusername} placeholder="Username" value={authusername}></input>
-          <input name={authpassword} type="authpassword" placeholder="Password" value={authpassword}></input>
+          <input name={username} placeholder="Username" value={username} onChange={onChange}></input>
+          <input name={password} type="password" placeholder="Password" value={password} onChange={onChange}></input>
         </div>
         <div className="visible-true">
           <h2>Bearer Token</h2>
@@ -54,8 +55,10 @@ const Form = ({ url, authusername, authpassword, onChange, onSubmit }) => (
 
 Form.propTypes = {
   url: PropTypes.string.isRequired,
-  authusername: PropTypes.string.isRequired,
-  authpassword: PropTypes.string.isRequired,
+  method: PropTypes.string.isRequired,
+  requestBody: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired
 };
