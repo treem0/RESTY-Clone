@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Form = ({ url, method, authusername, authpassword, onChange, onSubmit }) => (
   <form>
     <section>
-      <input name={url} type='text'></input>
+      <input name="url" type="text" value={url} placeholder="URL" onChange={onChange}></input>
       <div id='methods'>
         <label>
           <input type="radio" name="method" value="get" onChange={onChange}></input>

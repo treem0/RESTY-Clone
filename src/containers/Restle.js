@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Form from '../components/form/Form';
-
+import History from '../components/history/History';
+import Response from '../components/response/Response';
 
 export default class RESTLE extends Component {
 state = {
   url: '',
   method: '',
-  response: []
+  response: [],
+  history: []
 }
 
 handleChange = ({ target }) => {
@@ -23,7 +25,11 @@ handleSubmit = event => {
 
 render() {
   return (
-    <Form />
+    <>
+      <Form url={this.state.url} onSubmit={this.handleSubmit} onChange={this.handleChange} />
+      <History />
+      <Response />
+    </>
   );
 }
 }
