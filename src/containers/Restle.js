@@ -19,14 +19,24 @@ handleSubmit = event => {
   event.preventDefault();
 
   this.setState(state => ({
-      
+    response: [...state.response, {
+      response: state.response
+    }]
   }));
+}
+
+fetch = ({ url }) => {
+  fetch({ url })
+    .then(res => res.json())
+    .then(response => response
+      
+    );
 }
 
 render() {
   return (
     <>
-      <Form url={this.state.url} onSubmit={this.handleSubmit} onChange={this.handleChange} />
+      <Form url={this.state.url} onSubmit={this.handleSubmit} onChange={this.handleChange} authusername={this.state.authusername} authpassword={this.state.authpassword}/>
       <History />
       <Response />
     </>

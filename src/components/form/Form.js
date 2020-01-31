@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Form = ({ url, method, authusername, authpassword, onChange, onSubmit }) => (
+const Form = ({ url, authusername, authpassword, onChange, onSubmit }) => (
   <form>
     <section>
       <input name="url" type="text" value={url} placeholder="URL" onChange={onChange}></input>
@@ -39,12 +39,12 @@ const Form = ({ url, method, authusername, authpassword, onChange, onSubmit }) =
         <button>Headers</button>
         <div className="visible-true">
           <h2>Basic Authorization</h2>
-          <input name={authusername} placeholder="Username" value></input>
-          <input name={authpassword} type="authpassword" placeholder="Password" value></input>
+          <input name={authusername} placeholder="Username" value={authusername}></input>
+          <input name={authpassword} type="authpassword" placeholder="Password" value={authpassword}></input>
         </div>
         <div className="visible-true">
           <h2>Bearer Token</h2>
-          <input type="text" className="wide" name="authtoken" placeholder="Bearer Token" value></input>
+          <input type="text" className="wide" name="authtoken" placeholder="Bearer Token"></input>
         </div>
       </div>
     </section>
@@ -54,7 +54,6 @@ const Form = ({ url, method, authusername, authpassword, onChange, onSubmit }) =
 
 Form.propTypes = {
   url: PropTypes.string.isRequired,
-  method: PropTypes.string.isRequired,
   authusername: PropTypes.string.isRequired,
   authpassword: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
