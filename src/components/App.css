@@ -1,0 +1,14 @@
+.Header {
+    background-color: #204060;
+    color: #F5F5F5;
+}
+
+.Footer {
+    display: flex;
+    justify-content: center;
+    background-color: #204060;
+    color: #F5F5F5;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
