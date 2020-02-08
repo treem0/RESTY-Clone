@@ -1,0 +1,8 @@
+.Restle {
+    display: grid;
+    grid-template-areas: 
+    "header header"
+    "history form"
+    "history response"
+    "footer footer";
+}

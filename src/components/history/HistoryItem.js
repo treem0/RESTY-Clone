@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const HistoryItem = ({ method, headers, url, requestBody }) => (
+const HistoryItem = ({ method, url, requestBody }) => (
   <div>
     <p>{method}</p>
     <p>{headers}</p>

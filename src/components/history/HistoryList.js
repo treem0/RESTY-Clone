@@ -8,6 +8,7 @@ const HistoryList = ({ historyList }) => {
       <HistoryItem {...item} />
     </li>;
   });
+  
 
   return (
     <aside>
